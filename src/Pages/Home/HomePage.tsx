@@ -1,9 +1,10 @@
 import React from 'react'
+import EmailForm from 'src/Components/EmailForm/EmailForm'
 
 const HomePage = () => {
     return (
         <div>
-            This is the home page
+            <EmailForm />
         </div>
     )
 }
