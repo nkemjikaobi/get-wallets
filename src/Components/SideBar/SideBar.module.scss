@@ -1,0 +1,32 @@
+@import '../../Assets/styles/shared-styles.scss';
+.sidebar {
+	background-color: color(DarkBlue);
+	color: color(White);
+	width: 50%;
+	height: 100vh;
+	font-weight: $font-weight-light;
+	font-family: $font-family;
+	font-size: to-rem(14);
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+        align-items: center;
+		padding: to-rem(20);
+		font-weight: $font-weight-bold;
+        font-size: to-rem(18)
+        span {
+            display: inline-block;
+        }
+	}
+    .content {
+        padding: to-rem(20);
+        .indidividualContent {
+            display: flex;
+            margin-bottom: to-rem(20);
+            div:last-child {
+                margin-left: to-rem(10);
+            }
+        }
+    }
+}
