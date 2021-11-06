@@ -1,0 +1,15 @@
+
+// Show only on mobile
+%mobileOnly {
+  
+  @include media(">phone"){
+        display: none;
+  }
+}
+
+// Only renders on tablet and above
+%tabletAndAboveOnly {
+  @include media("<tablet"){
+        display: none;
+  }
+}

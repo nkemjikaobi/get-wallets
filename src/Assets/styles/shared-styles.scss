@@ -1,0 +1,13 @@
+@import "utils/utils";
+@import "mixins/mixins";
+@import "colors";
+@import "settings";
+@import "atoms/atoms";
+
+.mobileOnly {
+  @extend %mobileOnly;
+}
+
+.tabletAndAboveOnly {
+  @extend %tabletAndAboveOnly;
+}
