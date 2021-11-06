@@ -1,6 +1,6 @@
 interface INairaCurrency {
-  currency: string;
-  balance: number;
+	currency: string;
+	balance: number;
 }
 
 export default INairaCurrency;
