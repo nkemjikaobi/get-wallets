@@ -14,6 +14,7 @@ const Dashboard = () => {
         }
         //eslint-disable-next-line
     }, [])
+
 	return (
 		<div className={styles.mobileOnly}>
 			{sidebar && <SideBar />}
