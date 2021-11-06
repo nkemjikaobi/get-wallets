@@ -8,33 +8,33 @@ import {
 	GET_WALLET_TRANSACTIONS_URL,
 	FUND_WALLET_MANUALLY_URL,
 } from '../Routes/Payments';
-import config from "../../Configurations/configurations"
+import config from '../../Configurations/configurations';
 
 const authAxios = axios.create({
 	headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${config.web.secretKey}`
+		'Content-Type': 'application/json',
+		Authorization: `Bearer ${config.web.secretKey}`,
 	},
 });
 
-
 class PaymentService {
-
 	/**
 	 * Method to create wallet
 	 * @param email
 	 * @returns result IWallet
 	 */
 	public static CreateWallet = async (
-		email: string
+		customer_email: string
 	): Promise<IWallet> => {
-        const payload = email
-        let result: any;
+		let result: any;
+		const payload = {
+			customer_email: customer_email,
+		};
 
 		try {
-            const wallet = await authAxios.post(CREATE_WALLET_URL, payload);
-            console.log(wallet)
-			result = wallet;
+			const wallet = await authAxios.post(CREATE_WALLET_URL, payload);
+			console.log(wallet);
+			result = wallet.data.data;
 		} catch (error: any) {}
 		return result;
 	};
