@@ -33,7 +33,6 @@ class PaymentService {
 
 		try {
 			const wallet = await authAxios.post(CREATE_WALLET_URL, payload);
-			console.log(wallet);
 			result = wallet.data.data;
 		} catch (error: any) {}
 		return result;

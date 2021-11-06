@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { composeClasses } from 'src/libs/utils/utils';
 import styles from './EmailForm.module.scss';
-import PaymentService from "../../Http/Services/PaymentService";
+import PaymentService from '../../Http/Services/PaymentService';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const EmailForm = () => {
+
+const EmailForm: React.FunctionComponent = () => {
 	const [email, setEmail] = useState<string>('');
+
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		if (email === '') {
-			return toast.error('Email is required'); 
+			return toast.error('Email is required');
 		}
-		const wallet = await PaymentService.CreateWallet(email)
-		console.log({wallet});
+		const wallet = await PaymentService.CreateWallet(email);
 	};
 	return (
 		<div className={styles.container}>
