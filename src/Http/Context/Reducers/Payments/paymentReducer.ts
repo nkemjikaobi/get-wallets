@@ -1,6 +1,6 @@
 import {
     IPaymentState,
-	CREATE_WALLET
+	CREATE_WALLET,
 } from '../../Types/Payments/Types';
 
 const paymentReducer = (state: IPaymentState, action: any) => {
@@ -9,7 +9,6 @@ const paymentReducer = (state: IPaymentState, action: any) => {
 			return {
 				...state,
 				wallet: action.payload,
-				allWallets: [...state.allWallets, action.payload],
 			};
 		default:
 			return state;
