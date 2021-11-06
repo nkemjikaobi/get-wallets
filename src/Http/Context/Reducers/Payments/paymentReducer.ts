@@ -1,6 +1,7 @@
 import {
-    IPaymentState,
+	IPaymentState,
 	CREATE_WALLET,
+	SHOW_SIDEBAR,
 } from '../../Types/Payments/Types';
 
 const paymentReducer = (state: IPaymentState, action: any) => {
@@ -9,6 +10,11 @@ const paymentReducer = (state: IPaymentState, action: any) => {
 			return {
 				...state,
 				wallet: action.payload,
+			};
+		case SHOW_SIDEBAR:
+			return {
+				...state,
+				sidebar: action.payload,
 			};
 		default:
 			return state;

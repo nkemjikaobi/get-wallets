@@ -2,12 +2,13 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import paymentContext from '../../Contexts/Payments/paymentContext';
 import paymentReducer from '../../Reducers/Payments/paymentReducer';
-import { CREATE_WALLET, PAYMENT_ERROR } from '../../Types/Payments/Types';
+import { CREATE_WALLET, PAYMENT_ERROR, SHOW_SIDEBAR, SIDEBAR_ERROR } from '../../Types/Payments/Types';
 import PaymentService from '../../../Services/PaymentService';
 
 const PaymentState = (props: any) => {
 	const PaymentInitialState: any = {
 		wallet: null,
+		sidebar: false,
 		allWallets: null,
 		balance: null,
 		transactions: null,
@@ -32,6 +33,22 @@ const PaymentState = (props: any) => {
 		}
 	};
 
+	//Set visibility of sidebar
+	const showSideBar = async (visibility: boolean) => {
+		try {
+			
+			dispatch({
+				type: SHOW_SIDEBAR,
+				payload: visibility,
+			});
+		} catch (error) {
+			dispatch({
+				type: SIDEBAR_ERROR,
+				payload: error,
+			});
+		}
+	};
+
 	return (
 		<paymentContext.Provider
 			value={{
@@ -39,7 +56,9 @@ const PaymentState = (props: any) => {
 				allWallets: state.allWallets,
 				balance: state.balance,
 				transactions: state.transactions,
+				sidebar: state.sidebar,
 				createWalletAction,
+				showSideBar,
 			}}
 		>
 			{props.children}
