@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { composeClasses, setAuthSecret } from 'src/libs/utils/utils';
 import styles from './EmailForm.module.scss';
-import PaymentService from '../../Http/Services/PaymentService';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import paymentContext from '../../Http/Context/Contexts/Payments/paymentContext';

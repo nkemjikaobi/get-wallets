@@ -2,7 +2,6 @@
  * Routes for Payments
  */
 
-import IFundWallet from "src/dto/Payments/IFundWallet";
 import config from "../../Configurations/configurations";
 
 export const GATEWAY_API_ROUTE = config.web.baseUrl

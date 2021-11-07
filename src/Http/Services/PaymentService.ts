@@ -4,12 +4,10 @@ import axios from 'axios';
 import {
 	CREATE_WALLET_URL,
 	GET_ALL_WALLETS_URL,
-	GET_WALLET_DETAILS_URL,
 	GET_WALLET_TRANSACTIONS_URL,
 	FUND_WALLET_MANUALLY_URL,
 } from '../Routes/Payments';
 import config from '../../Configurations/configurations';
-import { GET_ALL_WALLETS } from '../Context/Types/Payments/Types';
 import { setAuthSecret } from 'src/libs/utils/utils';
 import IFundWallet from 'src/dto/Payments/IFundWallet';
 

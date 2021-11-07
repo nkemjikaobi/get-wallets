@@ -13,7 +13,7 @@ interface IFundWalletForm {
 }
 const FundWalletForm = () => {
 	const PaymentContext: any = useContext(paymentContext);
-	const { getWalletAction, fundWalletAction, wallet, clearMessage, message } =
+	const { getWalletAction, fundWalletAction, wallet } =
 		PaymentContext;
 	const history = useHistory();
 	const [values, setValues] = useState<IFundWalletForm>({
