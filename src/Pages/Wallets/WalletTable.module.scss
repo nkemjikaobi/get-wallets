@@ -13,4 +13,9 @@
 	tr:nth-child(even) {
 		background-color: color(Gray);
 	}
+	div {
+		margin-top: to-rem(20);
+		font-style: italic;
+		margin-left: to-rem(20);
+	}
 }

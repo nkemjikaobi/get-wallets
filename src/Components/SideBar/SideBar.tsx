@@ -3,7 +3,6 @@ import styles from './SideBar.module.scss';
 import { FaTimes, FaWallet } from 'react-icons/fa';
 import { MdDashboard, MdHistoryToggleOff } from 'react-icons/md';
 import { AiFillHome } from 'react-icons/ai';
-import { BiWallet } from 'react-icons/bi';
 import { useHistory } from 'react-router-dom';
 import paymentContext from '../../Http/Context/Contexts/Payments/paymentContext';
 import useClickOutside from 'src/CustomHooks/useClickOutside';
@@ -18,12 +17,6 @@ const SideBar = () => {
 			icon: <MdDashboard />,
 			name: 'Wallets',
 			link: '/dashboard',
-		},
-		{
-			id: 2,
-			icon: <BiWallet />,
-			name: 'Create Wallet',
-			link: '/create-wallet',
 		},
 		{
 			id: 3,

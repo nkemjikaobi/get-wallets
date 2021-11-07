@@ -14,26 +14,9 @@ const TransactionTable = () => {
 						<th>Currency</th>
 						<th>Provider</th>
 						<th>Date</th>
-						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					{/* {allWallets !== null ? (
-					allWallets.map((singleWallet: IWallet) => (
-						<WalletTableItem
-							wallet={singleWallet}
-							key={singleWallet.wallet_id}
-						/>
-					))
-				) : (
-					<div>No wallets created</div>
-				)} */}
-					<TransactionItem />
-					<TransactionItem />
-					<TransactionItem />
-					<TransactionItem />
-					<TransactionItem />
-					<TransactionItem />
 					<TransactionItem />
 				</tbody>
 			</table>

@@ -20,7 +20,6 @@ const PaymentState = (props: any) => {
 	const createWalletAction = async (email: string) => {
 		try {
 			const res: any = await PaymentService.CreateWallet(email);
-			//JSON.parse(localStorage.getItem('wallet));
 			dispatch({
 				type: CREATE_WALLET,
 				payload: res,
@@ -37,8 +36,6 @@ const PaymentState = (props: any) => {
 	const getAllWalletsAction = async () => {
 		try {
 			const res: any = await PaymentService.GetWallets();
-			console.log({ res });
-			//localStorage.setItem('wallet', res);
 			dispatch({
 				type: GET_ALL_WALLETS,
 				payload: res,
@@ -56,7 +53,6 @@ const PaymentState = (props: any) => {
 		try {
 			const wallet: any = localStorage.getItem('wallet');
 			const res: any = JSON.parse(wallet);
-			console.log({ getme: res });
 			dispatch({
 				type: GET_WALLET,
 				payload: res,
@@ -73,8 +69,6 @@ const PaymentState = (props: any) => {
 	const getAllTransactionsAction = async (walletId: string) => {
 		try {
 			const res: any = await PaymentService.GetTransactions(walletId);
-			console.log({ res });
-			//localStorage.setItem('wallet', res);
 			dispatch({
 				type: GET_WALLET_TRANSACTIONS,
 				payload: res,

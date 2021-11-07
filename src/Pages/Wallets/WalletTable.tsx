@@ -1,12 +1,18 @@
-import React, { useContext, useEffect } from 'react';
-import IWallet from 'src/dto/Payments/IWallet';
+import React, { useContext,useEffect  } from 'react';
 import paymentContext from '../../Http/Context/Contexts/Payments/paymentContext';
 import styles from './WalletTable.module.scss';
 import WalletTableItem from './WalletTableItem';
 
 const WalletTable = () => {
 	const PaymentContext: any = useContext(paymentContext);
-	const { wallet, allWallets, getAllWalletsAction } = PaymentContext;
+	const { wallet, getWalletAction } = PaymentContext;
+
+	useEffect(() => {
+		if (wallet === null) {
+			getWalletAction();
+		}
+		//eslint-disable-next-line
+	}, [wallet]);
 
 	return (
 		<table className={styles.table}>
@@ -20,7 +26,7 @@ const WalletTable = () => {
 				</tr>
 			</thead>
 			<tbody>
-				<WalletTableItem />
+				{wallet === null ? <div>No wallet found</div> : <WalletTableItem />}
 			</tbody>
 		</table>
 	);

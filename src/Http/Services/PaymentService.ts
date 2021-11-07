@@ -53,7 +53,6 @@ class PaymentService {
 		try {
 			const wallets = await authAxios.get(GET_ALL_WALLETS_URL);
 			result = wallets;
-			console.log({ wallets });
 		} catch (error: any) {}
 		return result;
 	};
@@ -68,8 +67,7 @@ class PaymentService {
 
 		try {
 			const transactions = await authAxios.get(GET_WALLET_TRANSACTIONS_URL(walletId));
-			result = transactions;
-			console.log({ transactions });
+			result = transactions.data.data;
 		} catch (error: any) {}
 		return result;
 	};
