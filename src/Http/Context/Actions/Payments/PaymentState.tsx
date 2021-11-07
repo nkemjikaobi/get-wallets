@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import paymentContext from '../../Contexts/Payments/paymentContext';
 import paymentReducer from '../../Reducers/Payments/paymentReducer';
-import { CREATE_WALLET, PAYMENT_ERROR, SHOW_SIDEBAR, SIDEBAR_ERROR, GET_ALL_WALLETS } from '../../Types/Payments/Types';
+import { CREATE_WALLET, PAYMENT_ERROR, SHOW_SIDEBAR, SIDEBAR_ERROR, GET_ALL_WALLETS, GET_WALLET_TRANSACTIONS } from '../../Types/Payments/Types';
 import PaymentService from '../../../Services/PaymentService';
 
 const PaymentState = (props: any) => {
@@ -51,6 +51,24 @@ const PaymentState = (props: any) => {
 		}
 	};
 
+	//Get all transactions action
+	const getAllTransactionsAction = async (walletId: string) => {
+		try {
+			const res: any = await PaymentService.GetTransactions(walletId);
+			console.log({ res });
+			//localStorage.setItem('wallet', res);
+			dispatch({
+				type: GET_WALLET_TRANSACTIONS,
+				payload: res,
+			});
+		} catch (error) {
+			dispatch({
+				type: PAYMENT_ERROR,
+				payload: error,
+			});
+		}
+	};
+
 	//Set visibility of sidebar
 	const showSideBar = async (visibility: boolean) => {
 		try {
@@ -78,6 +96,7 @@ const PaymentState = (props: any) => {
 				createWalletAction,
 				showSideBar,
 				getAllWalletsAction,
+				getAllTransactionsAction,
 			}}
 		>
 			{props.children}

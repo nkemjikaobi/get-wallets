@@ -2,7 +2,8 @@ import {
 	IPaymentState,
 	CREATE_WALLET,
 	SHOW_SIDEBAR,
-	GET_ALL_WALLETS
+	GET_ALL_WALLETS,
+	GET_WALLET_TRANSACTIONS,
 } from '../../Types/Payments/Types';
 
 const paymentReducer = (state: IPaymentState, action: any) => {
@@ -16,6 +17,11 @@ const paymentReducer = (state: IPaymentState, action: any) => {
 			return {
 				...state,
 				allWallets: action.payload,
+			};
+		case GET_WALLET_TRANSACTIONS:
+			return {
+				...state,
+				transactions: action.payload,
 			};
 		case SHOW_SIDEBAR:
 			return {

@@ -2,11 +2,12 @@
 .sidebar {
 	background-color: color(DarkBlue);
 	color: color(White);
-	width: 50%;
+	//width: 50%;
 	height: 100vh;
 	font-weight: $font-weight-light;
 	font-family: $font-family;
 	font-size: to-rem(14);
+    cursor: pointer;
 
 	.header {
 		display: flex;
@@ -30,3 +31,4 @@
         }
     }
 }
+

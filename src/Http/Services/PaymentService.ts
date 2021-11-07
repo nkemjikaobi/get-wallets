@@ -56,6 +56,22 @@ class PaymentService {
 		} catch (error: any) {}
 		return result;
 	};
+
+	/**
+	 * Method to get all transactions for a particluar wallet
+	 * @param walletId
+	 * @returns result any
+	 */
+	public static GetTransactions = async (walletId: string): Promise<any> => {
+		let result: any;
+
+		try {
+			const transactions = await authAxios.get(GET_WALLET_TRANSACTIONS_URL(walletId));
+			result = transactions;
+			console.log({ transactions });
+		} catch (error: any) {}
+		return result;
+	};
 }
 
 export default PaymentService;
