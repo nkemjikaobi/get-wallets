@@ -1,3 +1,4 @@
+import axios from 'axios';
 // /**
 //  * Compose a number of styles together easily
 //  * @ty {String} styles Classes/styles to be applied
@@ -11,4 +12,13 @@ export const composeClasses = (...styles: string[]): string => {
   });
 
   return classes.trim();
+};
+
+//Set the global headers to use the secret key
+export const setAuthSecret = (secret: any) => {
+	if (secret) {
+		axios.defaults.headers.common['Authorization'] = `Bearer ${secret}`;
+	} else {
+		delete axios.defaults.headers.common['Authorization'];
+	}
 };

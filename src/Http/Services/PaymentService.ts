@@ -10,12 +10,13 @@ import {
 } from '../Routes/Payments';
 import config from '../../Configurations/configurations';
 import { GET_ALL_WALLETS } from '../Context/Types/Payments/Types';
+import { setAuthSecret } from 'src/libs/utils/utils';
 
-console.log(config.web.secretKey);
+setAuthSecret(config.web.secretKey);
 const authAxios = axios.create({
 	headers: {
 		'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-		'Authorization': `Bearer ${config.web.secretKey}`,
+		//'Authorization': `Bearer ${config.web.secretKey}`,
 		'Access-Control-Allow-Origin': '*',
 	},
 });
