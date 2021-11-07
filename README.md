@@ -1,5 +1,8 @@
 # Getting Started with Get Wallets
 
+Live Link
+Open [https://get-wallets.netlify.app/](https://get-wallets.netlify.app/) to view it in the browser.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## How To Run
