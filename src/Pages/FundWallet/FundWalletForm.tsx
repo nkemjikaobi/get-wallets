@@ -1,31 +1,51 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { composeClasses } from 'src/libs/utils/utils';
 import styles from './FundWalletForm.module.scss';
-import PaymentService from '../../Http/Services/PaymentService';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import paymentContext from '../../Http/Context/Contexts/Payments/paymentContext';
 import { useHistory } from 'react-router-dom';
 
 interface IFundWalletForm {
-    wallet_id: string,
-    currency: string,
-    amount: string;
+	wallet_id: string;
+	currency: string;
+	amount: string;
 }
 const FundWalletForm = () => {
 	const PaymentContext: any = useContext(paymentContext);
-	const { createWalletAction } = PaymentContext;
+	const { getWalletAction, fundWalletAction, wallet, clearMessage, message } =
+		PaymentContext;
 	const history = useHistory();
-    const [values, setValues] = useState<IFundWalletForm>({
-			wallet_id: '',
-			currency: '',
-			amount: '',
-    });
-    
-    const handleInputChange = (e: any) => {
-			const { name, value } = e.target;
-			setValues({ ...values, [name]: value });
-		};
+	const [values, setValues] = useState<IFundWalletForm>({
+		wallet_id: `${wallet && wallet.wallet_id}`,
+		currency: 'NGN',
+		amount: '',
+	});
+
+	useEffect(() => {
+		if (wallet === null) {
+			getWalletAction();
+		}
+		//eslint-disable-next-line
+	}, [wallet]);
+
+	useEffect(() => {
+		if (wallet !== null) {
+			setValues({ ...values, wallet_id: wallet.wallet_id });
+		}
+		//eslint-disable-next-line
+	}, [wallet]);
+	useEffect(() => {
+		if (wallet === null) {
+			getWalletAction();
+		}
+		//eslint-disable-next-line
+	}, [wallet]);
+
+	const handleInputChange = (e: any) => {
+		const { name, value } = e.target;
+		setValues({ ...values, [name]: value });
+	};
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
@@ -37,11 +57,13 @@ const FundWalletForm = () => {
 		if (hasEmptyFields) {
 			toast.error('Please fill in all fields');
 		}
+		fundWalletAction(values);
+		history.push('/dashboard');
 	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.formContainer}>
-				<span>Create Your Wallet</span>
+				<span>Fund Your Wallet</span>
 				<ToastContainer />
 
 				<form action=''>
@@ -51,19 +73,15 @@ const FundWalletForm = () => {
 							type='text'
 							name='wallet_id'
 							placeholder='Enter The Wallet ID'
-							value={values.wallet_id}
-							onChange={handleInputChange}
+							defaultValue={wallet && wallet.wallet_id}
 						/>
 					</div>
 					<div className={styles.formGroup}>
 						<label htmlFor='currency'>Currency</label>
-						<input
-							type='text'
-							name='currency'
-							placeholder='Enter Currency'
-							value={values.currency}
-							onChange={handleInputChange}
-						/>
+						<select name='currency' onChange={handleInputChange}>
+							<option value='NGN'>NGN</option>
+							<option value='USD'>USD</option>
+						</select>
 					</div>
 					<div className={styles.formGroup}>
 						<label htmlFor='amount'>Amount</label>

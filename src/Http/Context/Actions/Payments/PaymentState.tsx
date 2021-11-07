@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
-import axios from 'axios';
 import paymentContext from '../../Contexts/Payments/paymentContext';
 import paymentReducer from '../../Reducers/Payments/paymentReducer';
-import { CREATE_WALLET, PAYMENT_ERROR, SHOW_SIDEBAR, SIDEBAR_ERROR, GET_ALL_WALLETS, GET_WALLET_TRANSACTIONS, GET_WALLET } from '../../Types/Payments/Types';
+import { CREATE_WALLET, PAYMENT_ERROR, SHOW_SIDEBAR, SIDEBAR_ERROR, GET_ALL_WALLETS, GET_WALLET_TRANSACTIONS, GET_WALLET, FUND_WALLET_MANUALLY, CLEAR_MESSAGE } from '../../Types/Payments/Types';
 import PaymentService from '../../../Services/PaymentService';
+import IFundWallet from 'src/dto/Payments/IFundWallet';
 
 const PaymentState = (props: any) => {
 	const PaymentInitialState: any = {
@@ -12,6 +12,7 @@ const PaymentState = (props: any) => {
 		allWallets: null,
 		balance: null,
 		transactions: null,
+		message: '',
 	};
 
 	const [state, dispatch] = useReducer(paymentReducer, PaymentInitialState);
@@ -81,6 +82,22 @@ const PaymentState = (props: any) => {
 		}
 	};
 
+	//Fund Wallet
+	const fundWalletAction = async (walletDetails: IFundWallet) => {
+		try {
+			const res: any = await PaymentService.FundWallet(walletDetails);
+			dispatch({
+				type: FUND_WALLET_MANUALLY,
+				payload: res.message,
+			});
+		} catch (error) {
+			dispatch({
+				type: PAYMENT_ERROR,
+				payload: error,
+			});
+		}
+	};
+
 	//Set visibility of sidebar
 	const showSideBar = async (visibility: boolean) => {
 		try {
@@ -88,6 +105,21 @@ const PaymentState = (props: any) => {
 			dispatch({
 				type: SHOW_SIDEBAR,
 				payload: visibility,
+			});
+		} catch (error) {
+			dispatch({
+				type: SIDEBAR_ERROR,
+				payload: error,
+			});
+		}
+	};
+
+	//Clear Message
+	const clearMessage = async () => {
+		try {
+			
+			dispatch({
+				type: CLEAR_MESSAGE,
 			});
 		} catch (error) {
 			dispatch({
@@ -105,11 +137,14 @@ const PaymentState = (props: any) => {
 				balance: state.balance,
 				transactions: state.transactions,
 				sidebar: state.sidebar,
+				message: state.message,
 				createWalletAction,
 				showSideBar,
 				getAllWalletsAction,
 				getAllTransactionsAction,
 				getWalletAction,
+				fundWalletAction,
+				clearMessage,
 			}}
 		>
 			{props.children}

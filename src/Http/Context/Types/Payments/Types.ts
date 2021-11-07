@@ -9,6 +9,7 @@ export const FUND_WALLET_MANUALLY = "FUND_WALLET_MANUALLY";
 export const PAYMENT_ERROR = "PAYMENT_ERROR";
 export const SHOW_SIDEBAR = "SHOW_SIDEBAR";
 export const SIDEBAR_ERROR = "SIDEBAR_ERROR";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 
 export interface IPaymentState {
@@ -17,4 +18,5 @@ export interface IPaymentState {
   allWallets: Array<IWallet>;
   balance: any;
   transactions: any;
+  message: '';
 }

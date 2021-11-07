@@ -5,10 +5,12 @@ import styles from './Dashboard.module.scss';
 import { isMobile } from 'react-device-detect';
 import WalletTable from '../Wallets/WalletTable';
 import { composeClasses } from "../../libs/utils/utils";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = () => {
 	const PaymentContext: any = useContext(paymentContext);
-	const { sidebar, showSideBar, wallet, allWallets, getAllWalletsAction } =
+	const { sidebar, showSideBar, message, clearMessage } =
 		PaymentContext;
 	useEffect(() => {
 		if (isMobile) {
@@ -17,9 +19,18 @@ const Dashboard = () => {
 		//eslint-disable-next-line
 	}, []);
 
+	useEffect(() => {
+		if (message !== '') {
+			toast.success('Wallet Funded');
+		}
+		clearMessage();
+		//eslint-disable-next-line
+	}, [message]);
+
 	return (
 		<>
 			<div className={styles.mainContent}>
+				<ToastContainer />
 				<div className={styles.mobileOnly}>{sidebar && <SideBar />}</div>
 				<div className={composeClasses(styles.tabletAndAboveOnly, styles.size)}>
 					<SideBar />

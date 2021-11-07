@@ -5,10 +5,17 @@ import {
 	GET_ALL_WALLETS,
 	GET_WALLET_TRANSACTIONS,
 	GET_WALLET,
+	FUND_WALLET_MANUALLY,
+	CLEAR_MESSAGE,
 } from '../../Types/Payments/Types';
 
 const paymentReducer = (state: IPaymentState, action: any) => {
 	switch (action.type) {
+		case CLEAR_MESSAGE:
+			return {
+				...state,
+				message: '',
+			};
 		case CREATE_WALLET:
 			return {
 				...state,
@@ -28,6 +35,11 @@ const paymentReducer = (state: IPaymentState, action: any) => {
 			return {
 				...state,
 				transactions: action.payload,
+			};
+		case FUND_WALLET_MANUALLY:
+			return {
+				...state,
+				message: action.payload,
 			};
 		case SHOW_SIDEBAR:
 			return {
