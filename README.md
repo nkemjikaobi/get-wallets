@@ -1,7 +1,13 @@
-# Getting Started with Create React App
+# Getting Started with Get Wallets
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How To Run
+
+### `git clone git@github.com:nkemjikaobi/get-wallets.git`
+### `cd get-wallets`
+### `yarn install`
+### `yarn start`
 ## Available Scripts
 
 In the project directory, you can run:
