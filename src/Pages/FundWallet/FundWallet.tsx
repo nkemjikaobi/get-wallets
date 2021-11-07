@@ -5,6 +5,7 @@ import paymentContext from '../../Http/Context/Contexts/Payments/paymentContext'
 import { isMobile } from 'react-device-detect';
 import { composeClasses } from '../../libs/utils/utils';
 import FundWalletForm from './FundWalletForm';
+import { HiMenuAlt3 } from 'react-icons/hi';
 
 const FundWallet = () => {
     const PaymentContext: any = useContext(paymentContext);
@@ -26,7 +27,8 @@ const FundWallet = () => {
 						<SideBar />
 					</div>
 					<div className={styles.tableContainer}>
-						<h2>Fund Wallet</h2>
+						<HiMenuAlt3 onClick={() => showSideBar(!sidebar)} />
+						<h2 className={styles.tabletAndAboveOnly}>Fund Wallet</h2>
 						<FundWalletForm />
 					</div>
 				</div>

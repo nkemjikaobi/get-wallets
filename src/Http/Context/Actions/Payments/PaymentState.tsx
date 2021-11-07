@@ -21,9 +21,10 @@ const PaymentState = (props: any) => {
 	const createWalletAction = async (email: string) => {
 		try {
 			const res: any = await PaymentService.CreateWallet(email);
+			const message = 'Wallet Created Successfully'
 			dispatch({
 				type: CREATE_WALLET,
-				payload: res,
+				payload: { res, message },
 			});
 		} catch (error) {
 			dispatch({

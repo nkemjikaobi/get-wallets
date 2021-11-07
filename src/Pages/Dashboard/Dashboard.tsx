@@ -4,14 +4,14 @@ import paymentContext from '../../Http/Context/Contexts/Payments/paymentContext'
 import styles from './Dashboard.module.scss';
 import { isMobile } from 'react-device-detect';
 import WalletTable from '../Wallets/WalletTable';
-import { composeClasses } from "../../libs/utils/utils";
+import { composeClasses } from '../../libs/utils/utils';
 import { ToastContainer, toast } from 'react-toastify';
+import { HiMenuAlt3 } from 'react-icons/hi';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = () => {
 	const PaymentContext: any = useContext(paymentContext);
-	const { sidebar, showSideBar, message, clearMessage } =
-		PaymentContext;
+	const { sidebar, showSideBar, message, clearMessage } = PaymentContext;
 	useEffect(() => {
 		if (isMobile) {
 			showSideBar(true);
@@ -21,7 +21,7 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		if (message !== '') {
-			toast.success('Wallet Funded');
+			toast.success(message);
 		}
 		clearMessage();
 		//eslint-disable-next-line
@@ -36,6 +36,8 @@ const Dashboard = () => {
 					<SideBar />
 				</div>
 				<div className={styles.tableContainer}>
+					<HiMenuAlt3 onClick={() => showSideBar(!sidebar)} />
+
 					<h2>Wallet</h2>
 					<WalletTable />
 				</div>

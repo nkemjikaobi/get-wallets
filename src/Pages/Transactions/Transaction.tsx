@@ -5,6 +5,7 @@ import styles from './Transaction.module.scss';
 import SideBar from 'src/Components/SideBar/SideBar';
 import paymentContext from '../../Http/Context/Contexts/Payments/paymentContext';
 import { isMobile } from 'react-device-detect';
+import { HiMenuAlt3 } from 'react-icons/hi';
 
 const Transaction = () => {
 	const PaymentContext: any = useContext(paymentContext);
@@ -44,7 +45,8 @@ const Transaction = () => {
 					<SideBar />
 				</div>
 				<div className={styles.tableContainer}>
-					<h2>Transactions</h2>
+					<HiMenuAlt3 onClick={() => showSideBar(!sidebar)} />
+					<h2 className={styles.tabletAndAboveOnly}>Transactions</h2>
 					{transactions !== null ? (
 						<TransactionTable />
 					) : (

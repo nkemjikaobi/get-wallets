@@ -17,9 +17,11 @@ const paymentReducer = (state: IPaymentState, action: any) => {
 				message: '',
 			};
 		case CREATE_WALLET:
+			console.log(action.payload)
 			return {
 				...state,
-				wallet: action.payload,
+				wallet: action.payload.res,
+				message: action.payload.message
 			};
 		case GET_ALL_WALLETS:
 			return {

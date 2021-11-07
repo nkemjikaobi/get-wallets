@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styles from './SideBar.module.scss';
-import { FaTimes, FaWallet } from 'react-icons/fa';
+import { FaWallet } from 'react-icons/fa';
 import { MdDashboard, MdHistoryToggleOff } from 'react-icons/md';
 import { AiFillHome } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
@@ -45,12 +45,9 @@ const SideBar = () => {
 		showSideBar(false);
 	});
 	return (
-		<div className={styles.sidebar} ref={sideBarNode}>
+		<div className={styles.sidebar}>
 			<div className={styles.header}>
 				<div>Dashboard</div>
-				<div onClick={() => showSideBar(false)}>
-					<FaTimes />
-				</div>
 			</div>
 			<hr />
 			<div className={styles.content}>

@@ -55,9 +55,10 @@ const FundWalletForm = () => {
 		);
 
 		if (hasEmptyFields) {
-			toast.error('Please fill in all fields');
+			return toast.error('Please fill in all fields');
 		}
 		fundWalletAction(values);
+		setValues({ ...values, amount: '' });
 		history.push('/dashboard');
 	};
 	return (
