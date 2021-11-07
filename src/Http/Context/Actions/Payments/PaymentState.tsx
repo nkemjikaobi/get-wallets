@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import paymentContext from '../../Contexts/Payments/paymentContext';
 import paymentReducer from '../../Reducers/Payments/paymentReducer';
-import { CREATE_WALLET, PAYMENT_ERROR, SHOW_SIDEBAR, SIDEBAR_ERROR, GET_ALL_WALLETS, GET_WALLET_TRANSACTIONS } from '../../Types/Payments/Types';
+import { CREATE_WALLET, PAYMENT_ERROR, SHOW_SIDEBAR, SIDEBAR_ERROR, GET_ALL_WALLETS, GET_WALLET_TRANSACTIONS, GET_WALLET } from '../../Types/Payments/Types';
 import PaymentService from '../../../Services/PaymentService';
 
 const PaymentState = (props: any) => {
@@ -20,7 +20,7 @@ const PaymentState = (props: any) => {
 	const createWalletAction = async (email: string) => {
 		try {
 			const res: any = await PaymentService.CreateWallet(email);
-			//localStorage.setItem('wallet', res);
+			//JSON.parse(localStorage.getItem('wallet));
 			dispatch({
 				type: CREATE_WALLET,
 				payload: res,
@@ -41,6 +41,24 @@ const PaymentState = (props: any) => {
 			//localStorage.setItem('wallet', res);
 			dispatch({
 				type: GET_ALL_WALLETS,
+				payload: res,
+			});
+		} catch (error) {
+			dispatch({
+				type: PAYMENT_ERROR,
+				payload: error,
+			});
+		}
+	};
+
+	//Get wallet action
+	const getWalletAction = async () => {
+		try {
+			const wallet: any = localStorage.getItem('wallet');
+			const res: any = JSON.parse(wallet);
+			console.log({ getme: res });
+			dispatch({
+				type: GET_WALLET,
 				payload: res,
 			});
 		} catch (error) {
@@ -97,6 +115,7 @@ const PaymentState = (props: any) => {
 				showSideBar,
 				getAllWalletsAction,
 				getAllTransactionsAction,
+				getWalletAction,
 			}}
 		>
 			{props.children}

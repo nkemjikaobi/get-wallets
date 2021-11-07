@@ -16,7 +16,7 @@ setAuthSecret(config.web.secretKey);
 const authAxios = axios.create({
 	headers: {
 		'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-		//'Authorization': `Bearer ${config.web.secretKey}`,
+		'Authorization': `Bearer ${config.web.secretKey}`,
 		'Access-Control-Allow-Origin': '*',
 	},
 });
@@ -38,7 +38,7 @@ class PaymentService {
 		try {
 			const wallet = await authAxios.post(CREATE_WALLET_URL, payload);
 			result = wallet.data.data;
-			console.log({ wallet });
+			localStorage.setItem('wallet', JSON.stringify(result));
 		} catch (error: any) {}
 		return result;
 	};

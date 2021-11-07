@@ -1,32 +1,25 @@
-import React from 'react';
-import IWallet from 'src/dto/Payments/IWallet';
-import { BiEdit } from 'react-icons/bi';
+import React, { useContext, useEffect } from 'react';
+import paymentContext from '../../Http/Context/Contexts/Payments/paymentContext';
 
-interface IWalletTableItem {
-	wallet: IWallet;
-}
+const WalletTableItem: React.FunctionComponent = () => {
+	const PaymentContext: any = useContext(paymentContext);
+	const { wallet, getWalletAction } = PaymentContext;
+	const { wallet_id, status, customer_email, balance, created_at } = wallet || {};
 
-const WalletTableItem: React.FunctionComponent<any> = ({
-	wallet,
-}) => {
-	//const { wallet_id, status, customer_email, balance, created_at } = wallet;
+	useEffect(() => {
+		if (wallet === null) {
+			getWalletAction();
+		}
+		//eslint-disable-next-line
+	}, [wallet]);
 	return (
 		<>
-			{/* <tr>
+			<tr>
 				<td>{wallet_id}</td>
 				<td>{status}</td>
 				<td>{customer_email}</td>
-				<td>{balance}</td>
-                <td>{created_at}</td>
-                <td><BiEdit /></td>
-			</tr> */}
-			<tr>
-				<td>73567285623658382</td>
-				<td>active</td>
-				<td>nkemjikaobi@gmail.com</td>
-				<td>N500,000</td>
-                <td>Sat Nov 6 2021</td>
-                <td><BiEdit /></td>
+				<td>₦{balance}</td>
+				<td>{created_at}</td>
 			</tr>
 		</>
 	);

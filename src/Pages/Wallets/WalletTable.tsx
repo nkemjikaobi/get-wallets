@@ -8,11 +8,6 @@ const WalletTable = () => {
 	const PaymentContext: any = useContext(paymentContext);
 	const { wallet, allWallets, getAllWalletsAction } = PaymentContext;
 
-	useEffect(() => {
-		//getAllWalletsAction();
-		//eslint-disable-next-line
-	}, [allWallets]);
-
 	return (
 		<table className={styles.table}>
 			<thead>
@@ -22,26 +17,9 @@ const WalletTable = () => {
 					<th>Customer Email</th>
 					<th>Balance</th>
 					<th>Date Created</th>
-					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-				{/* {allWallets !== null ? (
-					allWallets.map((singleWallet: IWallet) => (
-						<WalletTableItem
-							wallet={singleWallet}
-							key={singleWallet.wallet_id}
-						/>
-					))
-				) : (
-					<div>No wallets created</div>
-				)} */}
-				<WalletTableItem />
-				<WalletTableItem />
-				<WalletTableItem />
-				<WalletTableItem />
-				<WalletTableItem />
-				<WalletTableItem />
 				<WalletTableItem />
 			</tbody>
 		</table>
