@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import paymentContext from '../../Contexts/Payments/paymentContext';
 import paymentReducer from '../../Reducers/Payments/paymentReducer';
-import { CREATE_WALLET, PAYMENT_ERROR, SHOW_SIDEBAR, SIDEBAR_ERROR } from '../../Types/Payments/Types';
+import { CREATE_WALLET, PAYMENT_ERROR, SHOW_SIDEBAR, SIDEBAR_ERROR, GET_ALL_WALLETS } from '../../Types/Payments/Types';
 import PaymentService from '../../../Services/PaymentService';
 
 const PaymentState = (props: any) => {
@@ -19,10 +19,28 @@ const PaymentState = (props: any) => {
 	//Create wallet action
 	const createWalletAction = async (email: string) => {
 		try {
-			const res = await PaymentService.CreateWallet(email);
-			console.log(res);
+			const res: any = await PaymentService.CreateWallet(email);
+			//localStorage.setItem('wallet', res);
 			dispatch({
 				type: CREATE_WALLET,
+				payload: res,
+			});
+		} catch (error) {
+			dispatch({
+				type: PAYMENT_ERROR,
+				payload: error,
+			});
+		}
+	};
+
+	//Get all wallets action
+	const getAllWalletsAction = async () => {
+		try {
+			const res: any = await PaymentService.GetWallets();
+			console.log({ res });
+			//localStorage.setItem('wallet', res);
+			dispatch({
+				type: GET_ALL_WALLETS,
 				payload: res,
 			});
 		} catch (error) {
@@ -59,6 +77,7 @@ const PaymentState = (props: any) => {
 				sidebar: state.sidebar,
 				createWalletAction,
 				showSideBar,
+				getAllWalletsAction,
 			}}
 		>
 			{props.children}

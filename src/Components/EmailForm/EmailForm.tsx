@@ -4,13 +4,14 @@ import styles from './EmailForm.module.scss';
 import PaymentService from '../../Http/Services/PaymentService';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import paymentContext from "../../Http/Context/Contexts/Payments/paymentContext";
-
+import paymentContext from '../../Http/Context/Contexts/Payments/paymentContext';
+import { useHistory } from 'react-router-dom';
 
 const EmailForm: React.FunctionComponent = () => {
 	const [email, setEmail] = useState<string>('');
 	const PaymentContext: any = useContext(paymentContext);
 	const { createWalletAction } = PaymentContext;
+	const history = useHistory();
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
@@ -18,6 +19,7 @@ const EmailForm: React.FunctionComponent = () => {
 			return toast.error('Email is required');
 		}
 		createWalletAction(email);
+		history.push('/dashboard');
 	};
 	return (
 		<div className={styles.container}>

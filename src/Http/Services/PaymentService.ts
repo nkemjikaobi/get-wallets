@@ -9,11 +9,14 @@ import {
 	FUND_WALLET_MANUALLY_URL,
 } from '../Routes/Payments';
 import config from '../../Configurations/configurations';
+import { GET_ALL_WALLETS } from '../Context/Types/Payments/Types';
 
+console.log(config.web.secretKey);
 const authAxios = axios.create({
 	headers: {
-		'Content-Type': 'application/json',
-		Authorization: `Bearer ${config.web.secretKey}`,
+		'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+		'Authorization': `Bearer ${config.web.secretKey}`,
+		'Access-Control-Allow-Origin': '*',
 	},
 });
 
@@ -34,6 +37,22 @@ class PaymentService {
 		try {
 			const wallet = await authAxios.post(CREATE_WALLET_URL, payload);
 			result = wallet.data.data;
+			console.log({ wallet });
+		} catch (error: any) {}
+		return result;
+	};
+
+	/**
+	 * Method to get all wallets
+	 * @returns result Array<IWallet>
+	 */
+	public static GetWallets = async (): Promise<Array<IWallet>> => {
+		let result: any;
+
+		try {
+			const wallets = await authAxios.get(GET_ALL_WALLETS_URL);
+			result = wallets;
+			console.log({ wallets });
 		} catch (error: any) {}
 		return result;
 	};
