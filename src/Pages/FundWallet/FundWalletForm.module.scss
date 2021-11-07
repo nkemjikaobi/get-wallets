@@ -1,0 +1,95 @@
+@import '../../Assets/styles/shared-styles.scss';
+:root {
+	--light-color: #f4f4f4;
+	--dark-color: #333;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica Neue !important;
+}
+.container {
+	max-width: to-rem(1100);
+	margin: auto;
+	overflow: hidden;
+	padding: 0 2rem;
+	position: relative;
+
+	.formContainer {
+		max-width: to-rem(500);
+		margin: 4rem auto;
+		overflow: hidden;
+		padding: 0 2rem;
+
+		@include breakpoint('m') {
+			max-width: to-rem(500);
+			margin: 7rem auto;
+			overflow: hidden;
+			padding: 0 2rem;
+		}
+
+		span:first-child {
+			display: inline-block;
+			font-weight: $font-weight-bold;
+			font-size: to-rem(20);
+			width: to-rem(420);
+			text-align: center;
+			line-height: to-rem(24.42);
+			letter-spacing: to-rem(0.3);
+
+			@include breakpoint('m') {
+				width: 100%;
+			}
+		}
+	}
+
+	.formGroup {
+		margin: 1.2rem 0;
+		position: relative;
+
+		input {
+			margin: 0.2rem 0;
+		}
+		label {
+			line-height: to-rem(24);
+			font-weight: $font-weight-regular;
+		}
+
+		input {
+			margin: 1.2rem 0;
+		}
+		input[type='text'] {
+			display: inline-block;
+			width: 100%;
+			padding: 0.4rem;
+			font-weight: $font-weight-regular;
+			line-height: to-rem(24);
+			border: 1px solid #ededed;
+			border-radius: to-rem(5);
+		}
+		::placeholder {
+			color: #b0b0b0;
+			line-height: 19px;
+		}
+	}
+
+	.btn {
+		display: inline-block;
+		background: var(--dark-color);
+		color: var(--light-color);
+		padding: to-rem(14, 28);
+		font-size: 1rem;
+		border: none;
+		cursor: pointer;
+		margin-right: 0.5rem;
+		transition: opacity 0.2s ease-in;
+		outline: none;
+		border-radius: to-rem(3);
+	}
+	.btnBlock {
+		display: block;
+		width: 100%;
+	}
+}

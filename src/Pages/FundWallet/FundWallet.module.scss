@@ -1,0 +1,15 @@
+@import '../../Assets/styles/shared-styles.scss';
+.mainContent {
+	display: flex;
+	// .size {
+	// 	width: 30%;
+	// }
+	.tableContainer {
+		padding: to-rem(50, 100);
+		width: -webkit-fill-available;
+		h2{
+			margin-left: to-rem(20);
+			margin-top: to-rem(40);
+		}
+	}
+}
